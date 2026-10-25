@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <!-- Toolbar icon: headphones around an open book. Matches the San Francisco icon theme: #434343 strokes
+       (#DEDFDF for dark themes, swapped in by render_icons.py), ~14/192 stroke, the #918FFB accent of "Convert books". -->
+  <path d="M25,122 V104 A71,71 0 0 1 167,104 V122" fill="none" stroke="#434343" stroke-width="14" stroke-linecap="round"/>
+  <path d="M96,110 C84,100 70,97 57,98 V157 C70,156 84,159 96,167 Z M96,110 C108,100 122,97 135,98 V157 C122,156 108,159 96,167 Z"
+        fill="none" stroke="#434343" stroke-width="13" stroke-linejoin="round"/>
+  <rect x="10" y="108" width="30" height="66" rx="14" fill="#918FFB"/>
+  <rect x="152" y="108" width="30" height="66" rx="14" fill="#918FFB"/>
+</svg>

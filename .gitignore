@@ -1,0 +1,16 @@
+# Kept locally, not published
+archive/
+comparison/
+google-colab-cli/
+CLAUDE.md
+icons/preview_*.png
+audiblez/samples/
+audiblez/.github/
+
+# Build output (the plugin zip is attached to GitHub releases instead)
+dist/
+
+# Local clutter
+__pycache__/
+*.pyc
+.DS_Store

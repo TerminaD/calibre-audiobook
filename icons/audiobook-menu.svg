@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Menu icon: the toolbar icon's headphones without the book, which would be illegible at 16 px.
+       Same colors as audiobook-toolbar.svg; ~8% stroke like the theme's icons at menu size. -->
+  <path d="M5,20.5 V17 A11,11 0 0 1 27,17 V20.5" fill="none" stroke="#434343" stroke-width="2.6" stroke-linecap="round"/>
+  <rect x="2" y="17.5" width="7" height="11" rx="2.6" fill="#918FFB"/>
+  <rect x="23" y="17.5" width="7" height="11" rx="2.6" fill="#918FFB"/>
+</svg>
