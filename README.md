@@ -15,8 +15,9 @@ machine never runs a speech model. I built it for my own library (mostly Chinese
 ## Requirements
 - Calibre 6 or later on macOS or Linux (tested with Calibre 9.16 on macOS). Windows isn't supported, because the
   Colab CLI isn't.
-- A Google account with Colab compute units. Conversions are billed by GPU time; a novella costs about 0.75 units
-  on a G4.
+- A Google account. **A free Colab account works:** the free tier offers a T4 GPU when one is available, and the
+  plugin uses it at no cost (Chinese is then read by Kokoro v1.1-zh). Paid Colab compute units add the L4 and G4,
+  and with it the Qwen voice clone. A novella costs about 0.75 units on a G4.
 - The [Colab CLI](https://pypi.org/project/google-colab-cli/): `uv tool install google-colab-cli` (or
   `pip install google-colab-cli`), then run `colab sessions` once in a terminal and complete the sign-in.
 
@@ -40,7 +41,7 @@ A ~29,000-character novella (e.g. 张爱玲's 倾城之恋), end to end:
 |---|---|---|---|
 | G4 | Qwen3-TTS voice clone, batch 136 | ~250 chars/s | ~5 min (~0.75 compute units) |
 | L4 | Kokoro v1.1-zh | ~245 chars/s | ~5 min |
-| T4 | Kokoro v1.1-zh | ~115 chars/s | ~7 min |
+| T4 | Kokoro v1.1-zh | ~115 chars/s | ~7 min (free on a free account) |
 
 English runs at about 1,000 chars/s on a G4. Each run also spends about a minute on setup (allocating the GPU,
 installing dependencies, loading the model).
@@ -55,6 +56,8 @@ Without Calibre, from a clone of this repo: `python3 colab_audiblez.py [-l zh|en
   conversion stops with an error that quotes the start of the chunk.
 - The progress percentage can pass 100%. That's upstream audiblez counting the "title – author" intro separately.
 - A dropped connection to Colab fails the job (the GPU is still released); just run it again.
+- On a free account the T4 isn't guaranteed: when none is available, the job fails with "Could not get a G4, L4, T4
+  GPU". Try again later. Rejected requests for the L4 and G4 cost nothing.
 
 ## How it works
 1. **Plugin** (`calibre_plugin/ui.py`): copies the book's EPUB to a temp folder and runs `colab_audiblez.convert()` as

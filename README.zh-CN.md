@@ -13,7 +13,8 @@
 
 ## 运行要求
 - macOS 或 Linux 上的 Calibre 6 及以上版本（已在 macOS 上的 Calibre 9.16 测试）。不支持 Windows，因为 Colab CLI 不支持。
-- 有 Colab 计算单元（compute units）的 Google 账号。转换按 GPU 使用时长计费；在 G4 上转一部中篇小说约花 0.75 个计算单元。
+- 一个 Google 账号。**免费的 Colab 账号也能用：** 免费层在有空闲时会提供 T4 GPU，插件可以免费使用它（此时中文由 Kokoro v1.1-zh 朗读）。
+  付费的 Colab 计算单元（compute units）还能用上 L4 和 G4，以及 G4 上的 Qwen 声音克隆。在 G4 上转一部中篇小说约花 0.75 个计算单元。
 - [Colab CLI](https://pypi.org/project/google-colab-cli/)：`uv tool install google-colab-cli`（或
   `pip install google-colab-cli`），然后在终端里运行一次 `colab sessions` 并完成登录。
 
@@ -33,7 +34,7 @@
 |---|---|---|---|
 | G4 | Qwen3-TTS 声音克隆，批量 136 | 约 250 字/秒 | 约 5 分钟（约 0.75 个计算单元） |
 | L4 | Kokoro v1.1-zh | 约 245 字/秒 | 约 5 分钟 |
-| T4 | Kokoro v1.1-zh | 约 115 字/秒 | 约 7 分钟 |
+| T4 | Kokoro v1.1-zh | 约 115 字/秒 | 约 7 分钟（免费账号不花钱） |
 
 英文在 G4 上约为每秒 1,000 个字符。每次运行另有约一分钟的准备时间（申请 GPU、安装依赖、加载模型）。
 
@@ -44,6 +45,7 @@
 - Qwen 偶尔会在一段文本结束后停不下来。这样的段落会重新生成；如果同一段连续失败四次，转换会停止，并报错显示这一段的开头。
 - 进度百分比可能超过 100%。这是上游 audiblez 把"书名 – 作者"开场白另算导致的。
 - 与 Colab 的连接中断会让任务失败（GPU 仍会被释放），重新运行即可。
+- 免费账号不一定总能拿到 T4：没有空闲时，任务会报错"Could not get a G4, L4, T4 GPU"，稍后再试即可。申请 L4 和 G4 被拒绝不产生任何费用。
 
 ## 工作原理
 1. **插件**（`calibre_plugin/ui.py`）：把书的 EPUB 复制到临时文件夹，以 Calibre 任务的形式运行 `colab_audiblez.convert()`。
